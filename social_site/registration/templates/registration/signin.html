@@ -1,0 +1,54 @@
+{% extends 'registration/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} signin {% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block content %}
+
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% else %}
+    <p>Please login to see this page.</p>
+  {% endif %}
+{% endif %}
+<div class="container-fluid display-6" >
+  <div class="row align-items-center">
+      <div class="row justify-content-center">
+          <div class="col-5">
+            <h1>Log-in</h1>
+            <p>
+              Please, use the following form to log-in. If you don't have an account 
+              <a href="{% url 'registration' %}" class="btn btn-primary btn-lg">register here</a>
+            </p>
+            <form action="." method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <p>
+                  <input type="submit" value="Log-in" class="btn btn-primary btn-lg">
+                </p>
+            </form>
+            <p>
+              <a href="{% url 'password_reset' %}" class="btn btn-primary btn-lg">Forgotten your password?</a>
+            </p>
+          </div>
+      </div>
+      
+      <br> <br>
+      <div class="row justify-content-center">
+          <div class="col-5">
+              <div class="">
+                  <a href="{% url 'registration' %}" class="btn btn-primary btn-lg">Или зарегистрироваться</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

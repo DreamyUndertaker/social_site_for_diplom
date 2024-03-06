@@ -1,0 +1,22 @@
+{% extends 'registration/layout.html' %}
+{% block title %}News{% endblock %}
+
+
+{% block content %}
+<h2>News Feed</h2>
+
+<form method="post" action="{% url 'news-feed' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Post</button>
+</form>
+<ul>
+    {% for news in news_list %}
+      
+    {% endfor %}
+  </ul>
+{% for news in news_feed %}
+<li><a href="{% url 'news-detail' news_id=news.id %}"><p>{{ news.author.username }} - {{ news.content }} - {{ news.created_at }}</p></a></li>
+  
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'registration/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} registration {% endblock %}
+
+{% block content %}
+<div class="container-fluid display-6"> 
+    <div class="row align-items-center">
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <p class="h1 fw-weight-bold">Создайте аккаунт</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-5">
+                <form method="POST">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <input type="submit" value="Создать аккаунт" class="btn btn-primary" style="height: 40px; width: 280px;">
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-5">
+                <div class="linkToSignin">
+                    <a href="{% url 'login' %}">Или войти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
