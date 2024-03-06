@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Chat List</h1>
-    <ul>
+{% extends 'registration/layout.html' %}
+
+{% block title %}Список чатов{% endblock %}
+
+{% block content %}
+<h1>Список чатов</h1>
+    <li>
+        
+    </li>
+<div class="container">
+    
         {% for chat in chats %}
-            <li><a href="{% url 'chat-detail' chat.id %}">Chat {{ chat.id }}</a></li>
+        <div class="card mb-3">
+            <a href="{% url 'chat-detail' chat.id %}" class="" style="text-decoration: none; color: black;">
+                Диалог {{ chat.id }}
+            </a>
+        </div>
         {% endfor %}
-    </ul>
-    <li><a href="{% url 'create-dialog' %}">Chat </a></li>
-</body>
-</html>
+    
+    <a href="{% url 'create-dialog' %}" style="text-decoration: none; color: black;">
+        Начать новый диалог
+    </a>
+</div>
+{% endblock %}

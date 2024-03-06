@@ -3,20 +3,39 @@
 
 
 {% block content %}
-<h2>News Feed</h2>
 
-<form method="post" action="{% url 'news-feed' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Post</button>
-</form>
-<ul>
-    {% for news in news_list %}
-      
-    {% endfor %}
-  </ul>
-{% for news in news_feed %}
-<li><a href="{% url 'news-detail' news_id=news.id %}"><p>{{ news.author.username }} - {{ news.content }} - {{ news.created_at }}</p></a></li>
-  
-{% endfor %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col" style="color: aliceblue;">
+      <h2>News Feed</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form method="post" action="{% url 'news-feed' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Post</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"> 
+      {% for news in news_feed %}
+        <div class="alert alert-warning">
+          <h3>{{ news.author.username }}</h3>
+          <p>{{ news.content }}</p>
+          <p>{{ news.created_at }}</p>
+          <a href="{% url 'news-detail' news_id=news.id %}" class="btn btn-warning">Читать детальнее</a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+
+</div>
+
 {% endblock %}

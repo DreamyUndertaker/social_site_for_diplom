@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ chat.id }}</title>
-</head>
-<body>
-    <h1>{{ chat.id }} Chat </h1>
+{% extends 'registration/layout.html' %}
+
+{% block title %}{{ chat.id }}{% endblock %}
+
+{% block content %}
+<h1>{{ chat.id }} Chat </h1>
     <div>
         {% for message in chat.messages.all %}
             <p>{{ message.author.username }}: {{ message.content }}{% if message.sent %} (Sent){% endif %}</p>
@@ -16,5 +14,4 @@
         {{ form.as_p }}
         <button type="submit">Send</button>
     </form>
-</body>
-</html>
+{% endblock %}

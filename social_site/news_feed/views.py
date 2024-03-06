@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import News
 from .forms import CommentForm, NewsForm
