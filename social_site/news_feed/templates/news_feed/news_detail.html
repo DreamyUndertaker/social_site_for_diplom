@@ -1,22 +1,26 @@
 {% extends 'registration/layout.html' %}
-{% block title %}News{% endblock %}
-
+{% load bootstrap5 %}
+{% block title %}Новости{% endblock %}
 
 {% block content %}
-  <h2>{{ news.title }}</h2>
-  <p>{{ news.content }}</p>
+    <div class="container">
+        <h2 class="my-4">{{ news.title }}</h2>
+        <p>{{ news.content }}</p>
 
-  <h3>Комментарии:</h3>
-  <ul>
-    {% for comment in comments %}
-      <li>{{ comment.author.username }}: {{ comment.text }}</li>
-    {% endfor %}
-  </ul>
+        <h3 class="mt-5">Комментарии:</h3>
+        <ul class="list-group mb-4">
+            {% for comment in comments %}
+                <li class="list-group-item">
+                    <strong>{{ comment.author.username }}</strong>: {{ comment.text }}
+                </li>
+            {% endfor %}
+        </ul>
 
-  <h3>Добавить комментарий:</h3>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Отправить комментарий</button>
-  </form>
+        <h3>Добавить комментарий:</h3>
+        <form method="post" class="mb-5">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mt-2">Отправить комментарий</button>
+        </form>
+    </div>
 {% endblock %}

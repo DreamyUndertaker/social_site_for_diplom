@@ -1,24 +1,17 @@
 {% extends 'registration/layout.html' %}
-
+{% load bootstrap5 %}
 {% block title %}Список чатов{% endblock %}
 
 {% block content %}
-<h1>Список чатов</h1>
-    <li>
-        
-    </li>
-<div class="container">
-    
-        {% for chat in chats %}
-        <div class="card mb-3">
-            <a href="{% url 'chat-detail' chat.id %}" class="" style="text-decoration: none; color: black;">
-                Диалог {{ chat.id }}
-            </a>
+    <div class="container mt-4">
+        <h1 class="mb-4">Список чатов</h1>
+        <div class="list-group">
+            {% for chat in chats %}
+                <a href="{% url 'chat-detail' chat.id %}" class="list-group-item list-group-item-action">
+                    Диалог {{ chat.id }}
+                </a>
+            {% endfor %}
         </div>
-        {% endfor %}
-    
-    <a href="{% url 'create-dialog' %}" style="text-decoration: none; color: black;">
-        Начать новый диалог
-    </a>
-</div>
+        <a href="{% url 'create-dialog' %}" class="btn btn-success mt-4">Начать новый диалог</a>
+    </div>
 {% endblock %}

@@ -2,10 +2,14 @@
 from django import forms
 from django.contrib.auth.models import User
 
+
 class CreateDialogForm(forms.Form):
     participant = forms.ModelChoiceField(
         queryset=User.objects.all(),
-        widget=forms.Select(attrs={'class': 'form-control'})
+        widget=forms.Select(attrs={
+            'class': 'form-control',
+            'label': 'собеседник'
+        })
     )
 
 

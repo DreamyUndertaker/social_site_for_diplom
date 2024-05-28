@@ -14,6 +14,18 @@ aside {
     border-right: 5px solid #4d4d4d;
 
 }
+body {
+    padding-top: 70px;
+}
+
+.container {
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
 
 aside img {
     width: 80px;

@@ -1,13 +1,15 @@
 {% extends 'registration/layout.html' %}
 {% block title %}Create an account{% endblock %}
-
+{% load bootstrap5 %}
 {% block content %}
-    <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
-    <form action="." method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
-    </form>
-    <a href=""></a>
+    <div class="container">
+        <h1 class="mb-4">Создать аккаунт</h1>
+        <p>Пожалуйста, заполните следующую форму для создания аккаунта:</p>
+        <form action="." method="post">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <button type="submit" class="btn btn-primary mt-3">Создать аккаунт</button>
+        </form>
+        <p class="mt-3"><a href="{% url 'login' %}">Уже есть аккаунт? Войти</a></p>
+    </div>
 {% endblock %}

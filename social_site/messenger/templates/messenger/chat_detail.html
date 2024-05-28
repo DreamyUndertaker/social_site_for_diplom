@@ -1,17 +1,24 @@
 {% extends 'registration/layout.html' %}
-
-{% block title %}{{ chat.id }}{% endblock %}
+{% load bootstrap5 %}
+{% block title %}Чат {{ chat.id }}{% endblock %}
 
 {% block content %}
-<h1>{{ chat.id }} Chat </h1>
-    <div>
-        {% for message in chat.messages.all %}
-            <p>{{ message.author.username }}: {{ message.content }}{% if message.sent %} (Sent){% endif %}</p>
-        {% endfor %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Чат {{ chat.id }}</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                {% for message in chat.messages.all %}
+                    <div class="mb-3">
+                        <strong>{{ message.author.username }}</strong>: {{ message.content }}
+                        {% if message.sent %} <span class="badge bg-success">Отправлено</span>{% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
     </div>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send</button>
-    </form>
 {% endblock %}

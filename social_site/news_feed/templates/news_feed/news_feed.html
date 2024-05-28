@@ -1,41 +1,38 @@
 {% extends 'registration/layout.html' %}
-{% block title %}News{% endblock %}
-
+{% load bootstrap5 %}
+{% block title %}Новости{% endblock %}
 
 {% block content %}
-
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="col" style="color: aliceblue;">
-      <h2>News Feed</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <form method="post" action="{% url 'news-feed' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Post</button>
-      </form>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col"> 
-      {% for news in news_feed %}
-        <div class="alert alert-warning">
-          <h3>{{ news.author.username }}</h3>
-          <p>{{ news.content }}</p>
-          <p>{{ news.created_at }}</p>
-          <a href="{% url 'news-detail' news_id=news.id %}" class="btn btn-warning">Читать детальнее</a>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="my-4">Новостная лента</h2>
+            </div>
         </div>
-      {% endfor %}
+
+        <div class="row mb-4">
+            <div class="col">
+                <form method="post" action="{% url 'news-feed' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Опубликовать</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                {% for news in news_feed %}
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h3 class="card-title">{{ news.author.username }}</h3>
+                            <p class="card-text">{{ news.content }}</p>
+                            <p class="card-text"><small class="text-muted">{{ news.created_at }}</small></p>
+                            <a href="{% url 'news-detail' news_id=news.id %}" class="btn btn-warning">Читать детальнее</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </div>
-
-
-
-
-</div>
-
 {% endblock %}
